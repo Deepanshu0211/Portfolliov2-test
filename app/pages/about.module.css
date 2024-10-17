@@ -1,0 +1,27 @@
+.container {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .content {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  
+  

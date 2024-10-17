@@ -1,165 +1,330 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+@import url('https://fonts.googleapis.com/css2?family=Antic+Didone&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Antic+Didone&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
+.pageContainer {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #0f0e0e;
+  position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+.pageContainer::before {
+  background: conic-gradient(
+    from 360deg at 30% 50%,
+    #f1f1e733 10deg,
+    #57996b33 55deg,
+    rgba(186, 126, 214, 0.2) 180deg,
+    #cf391e33 160deg,
+    transparent 360deg
+  );
+  border-radius: 50%;
+  width: 40vw;
+  height: 30vh;
+  margin-left: -30vw;
+  content: "";
+  left: 50%;
+  position: absolute;
+  filter: blur(45px);
+  transform: translateZ(0);
+}
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
+.pageContainer::after {
+  background: linear-gradient(
+    to bottom right,
+    rgba(170, 200, 201, 1.37),
+    rgba(172, 11, 131, 0.164),
+    rgba(126, 196, 14, 0.3)
+  );
+  width: 20vw;
+  height: 15vh;
+  z-index: -1;
+  content: "";
+  left: 50%;
+  position: absolute;
+  filter: blur(45px);
+  transform: translateZ(0);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.459);
+  width: 30vw; 
+  padding: 2vw;
+  border-radius: 8px;
+  z-index: 1;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh; 
+  width: 100%;
+}
+
+.formInput {
+  padding: 1vh; 
+  font-size: 1.5vh;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.formButton {
+  width: 20vw;
+  height: 10vh;
+  border: none;
+  outline: none;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 2.5vh;
+  border-radius: 40px;
+  text-align: center;
+  box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.7s;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 2vw; 
+  background: radial-gradient(circle, rgba(10, 10, 20, 1) 0%, rgba(0, 0, 50, 1) 100%);
+  height: 100vh;
+  perspective: 1000px;
+}
+
+.container h1 {
+  position: absolute;
+  font-size: 17vw;
+  left: 5vw;
+  top: -45vh;
+  font-family: "Antic Didone", serif;
+  transition: transform 0.3s;
+}
+.am{
+  position: absolute;
+  font-size: 4vw;
+  color: rgb(247, 246, 246);
+  left: 14vw;
+  top: -38vh;
+  font-family: "Antic Didone", serif;
+}
+
+
+@media (max-width: 768px) {
+  .container h2 {
+    left: 6vw;
+    top: 1vh;
+    font-size: 3vw; 
   }
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
+
+@media (max-width: 480px) {
+  .container h2 {
+    left: 4vw;
+    top: 1vh;
+    font-size: 2.5vw; 
+  }
 }
 
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  cursor: pointer;
+.intro {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+  font-family: "Antic Didone", serif;
+  font-size: 8vw;
+  color: rgba(128, 128, 128, 0.74);
+  width: 100%;
+  text-align: center;
+  transition: 0.7s;
+  transition: transform 0.3s;
+  z-index: -1;
+ 
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+
+@media (max-width: 768px) {
+  .intro {
+    font-size: 5vw; 
+    margin-top: -5vh;
+  }
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
+
+@media (max-width: 480px) {
+  .intro {
+    font-size: 4vw; 
+    margin-top: -5vh;
+  }
 }
 
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
+.Para {
+  position: absolute;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  font-family: "Antic Didone", serif;
+  font-size: 1.1vw;
+  color: rgb(168, 165, 165);
+  width: 25vw;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  opacity: 1;
+  left: 17vw;
+  z-index: 111;
+  transition: transform 0.3s;
+}
+.Para:hover{
+ 
+  transition: 0.7s;
+ 
+  transform: scale(1.05);
+  
 }
 
-.footer img {
-  flex-shrink: 0;
+
+.hori {
+  cursor: pointer;
+  margin-right: 3.2vw;
+  opacity: 0.8;
+  margin-top: 2vh;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transition: 0.7s;
+  font-size: 1.2vw;
+}
+.hori:hover {
+  transition: 0.7s;
+  opacity: 1;
+  transform: scale(1.9);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+.hori2 {
+  cursor: pointer;
+  font-size: 1.2vw;
+  
+  opacity: 0.8;
+ 
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transition: 0.7s;
+}
+.hori2:hover {
+  transition: 0.7s;
+  opacity: 1;
+  transform: scale(1.1);
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
-
-  .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
+.hori3 {
+  cursor: pointer;
+  font-size: 1.2vw;
+  opacity: 0.8;
+  margin-top: 1em;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  transition: 0.7s;
+  text-orientation: mixed;
+  margin-right: -1.2em;
+}
+.hori3:hover {
+  transition: 0.7s;
+  opacity: 1;
+  transform: scale(1.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
+.hori4 {
+  cursor: pointer;
+  font-size: 1.2vw;
+  opacity: 0.8;
+ 
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  transition: 0.7s;
+  text-orientation: mixed;
+  margin-right: 1em;
+}
+.hori4:hover {
+  transition: 0.7s;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.socialLinks {
+  position: absolute;
+  right: 0;
+  top: 30%;
+}
+
+.Para2{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Antic Didone", serif;
+  font-size: 1.1vw;
+  color: rgb(168, 165, 165);
+  width: 22vw;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5));
+  padding: 2vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  opacity: 1;
+  left: 43vw;
+  z-index: 111;
+}
+.Para3{
+   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Antic Didone", serif;
+  font-size: 1.1vw;
+  color: rgb(168, 165, 165);
+  width: 25vw;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.233), rgba(0, 0, 0, 0.267));
+  backdrop-filter: blur(10px);
+  padding: 2vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  opacity: 1;
+  left: 65.9vw;
+  z-index: 111;
+}
+.grid{
+  position: relative;
+  display: grid;
+  left: -3%;
+  z-index: 2;
+  cursor: pointer;
 }
